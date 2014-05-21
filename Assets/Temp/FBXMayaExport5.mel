@@ -1,0 +1,22 @@
+print "Starting maya loading and fbx conversion \n";
+			
+if (`file -q -exists "D:/Users/ajd5635/Ether/Assets/Assets/Game/Models/Bullet.mb"`)
+{
+	file -o "D:/Users/ajd5635/Ether/Assets/Assets/Game/Models/Bullet.mb";
+	FBXExportEmbeddedTextures -v false;
+	// FBXExportHardEdges -v true;
+	FBXExportApplyConstantKeyReducer -v false;
+	FBXExportShowUI -v false;
+
+	print "Before fbx export\n";
+	FBXExport -f "D:/Users/ajd5635/Ether/Assets/Temp/ExportedFBXFile.fbx";
+	print "after fbx export\n";
+}
+else
+	print "Could not open Maya file.";
+
+system ("del \"D:\\Users\\ajd5635\\Ether\\Assets\\Temp\\CommandPipe\"");
+
+$donepipeKill = `fopen "D:/Users/ajd5635/Ether/Assets/Temp/SyncPipeKill" "w"`;
+fwrite $donepipeKill "Done";
+fclose $donepipeKill;
