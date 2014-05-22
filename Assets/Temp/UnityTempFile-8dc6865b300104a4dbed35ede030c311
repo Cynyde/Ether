@@ -2,13 +2,12 @@
 -target:library
 -nowarn:0169
 -out:Temp/Assembly-CSharp.dll
--r:"C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll"
--r:"C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll"
--define:UNITY_WEBPLAYER
--define:WEBPLUG
+-r:"C:/Program Files (x86)/Unity/Editor/Data/PlaybackEngines/Windows64StandalonePlayer/Managed/UnityEngine.dll"
+-define:UNITY_STANDALONE_WIN
 -define:ENABLE_MICROPHONE
 -define:ENABLE_TEXTUREID_MAP
 -define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
 -define:ENABLE_MONO
 -define:ENABLE_SPRITES
 -define:ENABLE_TERRAIN
@@ -33,9 +32,7 @@
 -define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
 -define:UNITY_4_3_4
 -define:UNITY_4_3
--define:ENABLE_PROFILER
--define:UNITY_EDITOR
--define:UNITY_EDITOR_WIN
+-define:UNITY_64
 Assets/Game/NGUI/Examples/Scripts/InventorySystem/Game/EquipItems.cs
 Assets/Game/NGUI/Examples/Scripts/InventorySystem/Game/EquipRandomItem.cs
 Assets/Game/NGUI/Examples/Scripts/InventorySystem/Game/UICursor.cs
@@ -156,6 +153,7 @@ Assets/Game/NGUI/Scripts/UI/UITooltip.cs
 Assets/Game/NGUI/Scripts/UI/UIViewport.cs
 Assets/Game/Scipts/AsteroidBehavior.cs
 Assets/Game/Scipts/BattlefieldRangeCheck.cs
+Assets/Game/Scipts/BombingMove.cs
 Assets/Game/Scipts/BulletCollision.cs
 Assets/Game/Scipts/CameraSwitch.cs
 Assets/Game/Scipts/EnemyBulletCollision.cs
@@ -164,6 +162,10 @@ Assets/Game/Scipts/MainMenu.cs
 Assets/Game/Scipts/NewShipScript.cs
 Assets/Game/Scipts/PlayerManagement.cs
 Assets/Game/Scipts/SmoothFollowCS.cs
+Assets/Game/Scipts/StatManager.cs
+"Assets/Game/Scipts/Steering Scripts/FighterAI.cs"
+"Assets/Game/Scipts/Steering Scripts/FrigateAI.cs"
+"Assets/Game/Scipts/Steering Scripts/Steering.cs"
 Assets/SpaceUnity/Scripts/SU_Asteroid.cs
 Assets/SpaceUnity/Scripts/SU_AsteroidField.cs
 Assets/SpaceUnity/Scripts/SU_Moon.cs
@@ -178,3 +180,5 @@ Assets/SpaceUnity/_Demo/Scrips/SU_LaserShot.cs
 Assets/SpaceUnity/_Demo/Scrips/SU_SpaceSceneSwitcherDemoGUI.cs
 Assets/SpaceUnity/_Demo/Scrips/SU_Spaceship.cs
 Assets/SpaceUnity/_Demo/Scrips/SU_Thruster.cs
+-r:"C:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
+-r:"C:/Program Files (x86)/Unity/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"

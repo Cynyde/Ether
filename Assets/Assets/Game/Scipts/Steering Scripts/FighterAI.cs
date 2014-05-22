@@ -130,6 +130,9 @@ public class FighterAI : MonoBehaviour
 	// Update is called once per frame
 	public void Update ()
 	{
+		if(targetPrey == null)
+			Application.LoadLevel("Lose");
+
 		CalcSteeringForce ();
 		ClampSteering ();
 		

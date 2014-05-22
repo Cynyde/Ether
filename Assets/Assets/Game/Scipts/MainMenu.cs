@@ -2,10 +2,15 @@ using UnityEngine;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-	
+
+	void Start()
+	{
+		Screen.lockCursor = false;
+	}
+
 	void OnPlayClick()
 	{
-		Application.LoadLevel("Game");
+		Application.LoadLevel("GameSpace");
 	}
 	
 	void OnCreditsClick()

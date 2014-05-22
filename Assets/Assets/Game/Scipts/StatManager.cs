@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class StatManager : MonoBehaviour {
 
@@ -11,51 +12,50 @@ public class StatManager : MonoBehaviour {
 	public int enemyDamage = 5;
 	public int numEnemies = 1;
 
-	public GameObject playerPrefab;
-	public GameObject frigatePrefab;
-	public GameObject fighterPrefab;
+	public Object playerPrefab;
+	public Object frigatePrefab;
+	public Object fighterPrefab;
 
 	private GameObject playerPosition;
 	private GameObject frigatePosition;
-	private GameObject[] enemiesPositions;
-	private int[] enemiesHealth;
+	private List<GameObject> enemiesPositions;
+	private List<int> enemiesHealth;
 
 	private bool inRange = false;
 
 	// Use this for initialization
 	void Start () {
-	}
-
-	// Once the script is made
-	void OnAwake () {
-		enemiesPositions = new GameObject[numEnemies];
-		enemiesHealth = new int[numEnemies];
-
 		//Spawn Enemies
-		SpawnEnemies();
-
-		DontDestroyOnLoad(this);
+		//SpawnEnemies();
+		
+		//DontDestroyOnLoad(this);
+		
+		enemiesPositions = new List<GameObject>();
+		enemiesHealth = new List<int>();
 	}
 
 	//GUI calls
 	void OnGUI()
 	{
-		if(Vector3.Distance(playerPosition.transform.position,frigatePosition.transform.position) <= 200)
+		if(playerPosition !=null)
 		{
-			inRange = true;
-			GUI.Label(new Rect(Screen.width/2-150, Screen.height/2-128, 300,64), "Press 'B' to begin bombing run.");
+			if(Vector3.Distance(playerPosition.transform.position,frigatePosition.transform.position) <= 200)
+			{
+				inRange = true;
+				GUI.Label(new Rect(Screen.width/2-150, Screen.height/2-128, 300,64), "Press 'B' to begin bombing run.");
+			}
+			else
+				inRange = false;
 		}
-		else
-			inRange = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		//Spawn Frigate
-		frigatePosition = frigatePrefab;
+		frigatePosition = (GameObject)frigatePrefab;
 		
 		//Spawn Player
-		playerPosition = playerPrefab;
+		playerPosition = (GameObject)playerPrefab;
 
 		if(playerPosition == null)
 		{
@@ -84,10 +84,10 @@ public class StatManager : MonoBehaviour {
 	private void SpawnEnemies()
 	{
 		//Spawn Fighters
-		for (int i = 0; i < enemiesPositions.Length; i++) 
+		for (int i = 0; i < numEnemies; i++) 
 		{
-			enemiesPositions[i] = (GameObject)Instantiate(fighterPrefab as Object, new Vector3(50.0f * i, 0.0f, 1500.0f), Quaternion.identity);
-			Debug.Log("Created Enemy " + i);
+			//enemiesPositions.Add((GameObject)Instantiate(fighterPrefab, new Vector3((50.0f * i)-(int)(numEnemies/2), 0.0f, 1500.0f), Quaternion.identity));
+			//Debug.Log("Created Enemy " + i);
 		}
 	}
 
@@ -95,14 +95,14 @@ public class StatManager : MonoBehaviour {
 	{
 		//Spawn Player
 		if(playerPosition != null)
-			playerPosition = (GameObject)Instantiate(playerPrefab as Object, playerPosition.transform.position, playerPosition.transform.rotation);
+			playerPosition = (GameObject)Instantiate(playerPrefab, playerPosition.transform.position, playerPosition.transform.rotation);
 
 		//Spawn Frigate
 		if(frigatePosition != null)
-			frigatePosition = (GameObject)Instantiate(frigatePrefab as Object, frigatePosition.transform.position, frigatePosition.transform.rotation);
+			frigatePosition = (GameObject)Instantiate(frigatePrefab, frigatePosition.transform.position, frigatePosition.transform.rotation);
 
 		//Spawn Fighters
-		for (int i = 0; i < enemiesPositions.Length; i++) {
+		for (int i = 0; i < enemiesPositions.Count; i++) {
 			enemiesPositions[i] = (GameObject)Instantiate(enemiesPositions[i], enemiesPositions[i].transform.position, enemiesPositions[i].transform.rotation);
 			Debug.Log("Recreated Enemy " + i);
 		}

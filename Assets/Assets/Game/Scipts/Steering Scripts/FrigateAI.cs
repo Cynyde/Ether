@@ -25,26 +25,18 @@ public class FrigateAI : MonoBehaviour
 	public AudioClip soundEffectFire;
 
 	#region Waypoint Magic
-	private static float radiusX = Random.Range(1500f, 2000f); //Radius X;
-	private static float radiusY = Random.Range(1500f, 2000f); //Radius Y;
-	private static float radiusZ = Random.Range(1500f, 2000f); //Radius Z;
+	private float radiusX;
+	private float radiusY;
+	private float radiusZ;
 
-	private static float angleX = Random.Range(-45f, 45f); //Rotation around X;
-	private static float angleY = Random.Range(-180f, 180f); //Rotation around Y;
-	private static float angleZ = Random.Range(-45f, 45f); //Rotation around Z;
+	private float angleX;
+	private float angleY;
+	private float angleZ;
 
 	//Way points for ships to follow
-	private Vector3[] wayPts = new Vector3[6]
-	{
-		new Vector3(Mathf.Sin(angleX)	  * radiusX, Mathf.Cos(angleY)	   * radiusY, Mathf.Sin(angleZ) 	* radiusZ),//Point 1
-		new Vector3(Mathf.Sin(angleX+45)  * radiusX, Mathf.Cos(angleY+45)  * radiusY, Mathf.Sin(angleZ+45)  * radiusZ),//Point 2
-		new Vector3(Mathf.Sin(angleX+90)  * radiusX, Mathf.Cos(angleY+90)  * radiusY, Mathf.Sin(angleZ+90)  * radiusZ),//Point 3
-		new Vector3(Mathf.Sin(angleX+135) * radiusX, Mathf.Cos(angleY+135) * radiusY, Mathf.Sin(angleZ+135) * radiusZ),//Point 4
-		new Vector3(Mathf.Sin(angleX+180) * radiusX, Mathf.Cos(angleY+180) * radiusY, Mathf.Sin(angleZ+180) * radiusZ),//Point 5
-		new Vector3(Mathf.Sin(angleX+225) * radiusX, Mathf.Cos(angleY+225) * radiusY, Mathf.Sin(angleZ+225) * radiusZ),//Point 6
-	};
+	private Vector3[] wayPts;
 
-	private static int wayPtIndex = 2;
+	private int wayPtIndex;
 	#endregion
 
 	// Each vehicle contains a CharacterController which
@@ -84,6 +76,25 @@ public class FrigateAI : MonoBehaviour
 			//weaponMountPoints[i] = RotatePointAroundPivot(weaponMountPoints[i], this.transform.position, (Quaternion.Euler(0,90,0) * Vector3.forward));
 
 		wayPtIndex = 0;
+
+		radiusX = Random.Range(1500f, 2000f); //Radius X
+	    radiusY = Random.Range(1500f, 2000f); //Radius Y
+		radiusZ = Random.Range(1500f, 2000f); //Radius Z
+
+		angleX = Random.Range(-45f, 45f); //Rotation around X
+		angleY = Random.Range(-180f, 180f); //Rotation around Y
+		angleZ = Random.Range(-45f, 45f); //Rotation around Z
+
+		wayPts = new Vector3[6]
+		{
+			new Vector3(Mathf.Sin(angleX)	  * radiusX, Mathf.Cos(angleY)	   * radiusY, Mathf.Sin(angleZ) 	* radiusZ),//Point 1
+			new Vector3(Mathf.Sin(angleX+45)  * radiusX, Mathf.Cos(angleY+45)  * radiusY, Mathf.Sin(angleZ+45)  * radiusZ),//Point 2
+			new Vector3(Mathf.Sin(angleX+90)  * radiusX, Mathf.Cos(angleY+90)  * radiusY, Mathf.Sin(angleZ+90)  * radiusZ),//Point 3
+			new Vector3(Mathf.Sin(angleX+135) * radiusX, Mathf.Cos(angleY+135) * radiusY, Mathf.Sin(angleZ+135) * radiusZ),//Point 4
+			new Vector3(Mathf.Sin(angleX+180) * radiusX, Mathf.Cos(angleY+180) * radiusY, Mathf.Sin(angleZ+180) * radiusZ),//Point 5
+			new Vector3(Mathf.Sin(angleX+225) * radiusX, Mathf.Cos(angleY+225) * radiusY, Mathf.Sin(angleZ+225) * radiusZ),//Point 6
+		};
+
 		//get component references
 		characterController = gameObject.GetComponent<CharacterController> ();
 		steering = gameObject.GetComponent<Steering> ();

@@ -12,11 +12,11 @@
 -r:"C:/Program Files (x86)/Unity/Editor/Data/PlaybackEngines/BB10Player/EditorExtensions/UnityEditor.BB10.Extensions.dll"
 -r:"C:/Program Files (x86)/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/EditorExtensions/UnityEditor.Android.Extensions.dll"
 -r:"C:\Program Files (x86)\Unity\Editor\Data\PackageManager\Unity\PackageManager\4.3.4\Unity.PackageManager.dll"
--define:UNITY_WEBPLAYER
--define:WEBPLUG
+-define:UNITY_STANDALONE_WIN
 -define:ENABLE_MICROPHONE
 -define:ENABLE_TEXTUREID_MAP
 -define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
 -define:ENABLE_MONO
 -define:ENABLE_SPRITES
 -define:ENABLE_TERRAIN
@@ -41,6 +41,7 @@
 -define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
 -define:UNITY_4_3_4
 -define:UNITY_4_3
+-define:UNITY_64
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_WIN
